@@ -33,6 +33,11 @@
   cursor: pointer;
 }
 
+.product > button:hover,
+.product > button:active {
+  border: 1px solid #111;
+}
+
 .product__price {
   margin-top: 5px;
 }
