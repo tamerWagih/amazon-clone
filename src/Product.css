@@ -14,10 +14,12 @@
 
 .product__rating {
   display: flex;
+  margin-bottom: 15px;
 }
 
 .product > img {
   max-height: 200px;
+  max-width: 60%;
   width: 100%;
   object-fit: contain;
   margin-bottom: 15px;
@@ -44,5 +46,18 @@
 
 .product__info {
   height: 100px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .product > img {
+    max-height: 150px;
+    width: 90%;
+  }
+
+  .product {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
 }

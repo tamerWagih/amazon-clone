@@ -61,3 +61,10 @@
   border: none;
   cursor: not-allowed;
 }
+
+@media only screen and (max-width: 600px) {
+  .payment__section {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

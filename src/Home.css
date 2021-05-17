@@ -1,4 +1,5 @@
 .home {
+  position: relative;
   display: flex;
   justify-content: center;
   margin-left: auto;
@@ -17,4 +18,17 @@
   z-index: 1;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .home__row {
+    flex-wrap: wrap;
+  }
+
+  .home__image {
+    /* position: absolute;
+    top: 0;
+    left: 0px; */
+    margin-bottom: -50px;
+  }
 }

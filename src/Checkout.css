@@ -15,3 +15,9 @@
   padding: 10px;
   border-bottom: 1px solid lightgray;
 }
+
+@media only screen and (max-width: 600px) {
+  .checkout {
+    flex-wrap: wrap;
+  }
+}
