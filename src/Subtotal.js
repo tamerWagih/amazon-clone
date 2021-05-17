@@ -21,8 +21,8 @@ function Subtotal() {
             </small>
           </>
         )}
-        decimalScal={2}
-        value={getBasketTotal(basket).toFixed(2)}
+        decimalScale={2}
+        value={getBasketTotal(basket)}
         displayType={'text'}
         thousandSeparator={true}
         prefix={'$'}
