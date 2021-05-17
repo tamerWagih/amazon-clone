@@ -9,6 +9,17 @@ export const getBasketTotal = (basket) =>
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'LOAD_PREVIOUS_BASKET':
+      const previousBasket = action.payload;
+      return {
+        ...state,
+        basket: [...previousBasket],
+      };
+    case 'EMPTY_BASKET':
+      return {
+        ...state,
+        basket: [],
+      };
     case 'ADD_TO_BASKET':
       return {
         ...state,

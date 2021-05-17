@@ -7,9 +7,10 @@ import CheckoutProduct from './CheckoutProduct';
 import './Payment.css';
 import { getBasketTotal } from './reducer';
 import { useStatevalue } from './stateProvider';
+import { db } from './firebase';
 
 function Payment() {
-  const [{ basket, user }] = useStatevalue();
+  const [{ basket, user }, dispatch] = useStatevalue();
   const history = useHistory();
 
   const stripe = useStripe();
@@ -45,9 +46,24 @@ function Payment() {
         },
       })
       .then(({ paymentIntent }) => {
+        db.collection('users')
+          .doc(user?.uid)
+          .collection('orders')
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(true);
+
+        dispatch({
+          type: 'EMPTY_BASKET',
+        });
+        localStorage.setItem('basket', []);
 
         history.replace('/orders');
       });
@@ -112,10 +128,10 @@ function Payment() {
                   thousandSeparator={true}
                   prefix={'$'}
                 />
+                <button disabled={processing || disabled || succeeded}>
+                  <span>{processing ? <p>Processing</p> : 'Buy Now'}</span>
+                </button>
               </div>
-              <button disabled={processing || disabled || succeeded}>
-                <span>{processing ? <p>Processing</p> : 'Buy Now'}</span>
-              </button>
 
               {error && <div>error</div>}
             </form>
